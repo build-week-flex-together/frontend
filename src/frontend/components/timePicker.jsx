@@ -1,7 +1,5 @@
 import React from 'react';
-
-import TimePicker from 'rc-time-picker';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 const TimePicker = () => {
     return (
@@ -16,11 +14,11 @@ const TimePicker = () => {
                 <option value='Central Time'>Central Time (Chicago)</option>
                 <option value='Eastern Time'>Eastern Time (New York)</option>
             </select>
-            <button>Next</button>
+            <button>
+                <Link to='/addBuddy'>Next</Link>
+            </button>
         </div>
     );
 }
-
-ReactDOM.render(<TimePicker />, container);
 
 export default TimePicker;

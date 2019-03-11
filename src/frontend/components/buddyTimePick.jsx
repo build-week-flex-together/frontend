@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BuddyTimePick = () => {
     return (
@@ -11,9 +12,11 @@ const BuddyTimePick = () => {
                 30-minute time block once per week.  Please choose a time that works well for you.
             </p>
             <div>SELECTED CALENDAR TIMES WILL GO HERE</div>
-            <button>Next</button>
-            {/* <button>Submit</button> shown after time is selected */}
-            <a href='#'>None of these times work for me.</a>
+            {/* Button needs to be 'Next' until user chooses times, then it will change to 'Submit' */}
+            <button>
+                <Link to='/thanks'>Next</Link>
+            </button>
+            <Link to='/noMatchTime'>None of these times work for me</Link>
         </div>
     );
 }

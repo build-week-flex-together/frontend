@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TellMore = () => {
     return (
@@ -20,9 +21,11 @@ const TellMore = () => {
                 <p>Mobility Level (choose one)</p>
                 <button>Low</button>
                 <button>Medium</button>
-                <button>High</button>
+                <button>Hight</button>
             </div>
-            <button>Next</button>
+            <button>
+                <Link to='/timePicker'>Next</Link>
+            </button>
         </div>
     );
 }

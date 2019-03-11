@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 const NoMatchTime = () => {
     return (
@@ -12,7 +11,7 @@ const NoMatchTime = () => {
                 figure out a time that works
             </h1>
             <h3>What time works?</h3>
-            <TimePicker defaultValue={moment('13:30:56', 'HH:mm:ss')} />
+            <p>time picker will go here</p>
         </div>
     );
 }

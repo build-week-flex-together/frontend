@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AddBuddy = () => {
     return (
@@ -17,7 +18,9 @@ const AddBuddy = () => {
             <button>Low</button>
             <button>Medium</button>
             <button>High</button>
-            <button>Next</button>
+            <button>
+                <Link to='/thanks'>Next</Link>
+            </button>
         </div>
     );
 }
