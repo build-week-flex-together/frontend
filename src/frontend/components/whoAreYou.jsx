@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const WhoAreYou = () => {
     return (
@@ -12,6 +13,10 @@ const WhoAreYou = () => {
             <div>
                 <h3>I want to be a companion to my loved one/friend who needs to do low impact exercise.</h3>
             </div>
+            {/* exercise user or companion will both go to 'TellMeMore' - choice won't matter but status should be entered into database */}
+            <button>
+                <Link to='/tellMore'>Next</Link> 
+            </button>
         </div>
     );
 }
