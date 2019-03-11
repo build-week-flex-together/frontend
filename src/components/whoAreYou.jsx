@@ -12,6 +12,7 @@ const WhoAreYou = () => {
             <div>
                 <h3>I want to be a companion to my loved one/friend who needs to do low impact exercise.</h3>
             </div>
+            <button>Next</button>
         </div>
     );
 }
