@@ -5,18 +5,18 @@ class WhoAreYou extends React.Component {
     constructor() {
         super();
         this.state = {
-            userClass: ''
+            userType: ''
         }
     }
 
     // local storage after user update for senior / buddy option => will lead to correct path based on clicked button value.
     componentDidUpdate() {
-        localStorage.setItem('userClass', JSON.stringify(this.state));
+        localStorage.setItem('userType', JSON.stringify(this.state));
     }
     // sets state to user choice upon choice button click
-    handleUserClass = (e) => {
+    handleUserType = (e) => {
         this.setState({
-            userClass: e.target.value
+            userType: e.target.value
         })
     }
 
