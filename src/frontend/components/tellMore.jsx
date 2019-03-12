@@ -64,7 +64,7 @@ class TellMore extends React.Component {
                     {/* workout level buttons - need to style for color change on click */}
                     <button value='low' onClick={this.handleLevelChange}>Low</button>
                     <button value='medium' onClick={this.handleLevelChange}>Medium</button>
-                    <button value='high' onClick={this.handleLevelChange}>Hight</button>
+                    <button value='high' onClick={this.handleLevelChange}>High</button>
                 </div>
                 <button input type='submit' value='Next' onClick={this.handleSubmit}>
                     <Link to='/timePicker'>Next</Link>
