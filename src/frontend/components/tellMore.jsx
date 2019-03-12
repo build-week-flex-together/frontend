@@ -58,9 +58,9 @@ class TellMore extends React.Component {
                 </div>
                 <div>
                     <p>Mobility Level (choose one)</p>
-                    <button onClick={this.handleLevelChange}>Low</button>
-                    <button onClick={this.handleLevelChange}>Medium</button>
-                    <button onClick={this.handleLevelChange}>Hight</button>
+                    <button value='low' onClick={this.handleLevelChange}>Low</button>
+                    <button value='medium' onClick={this.handleLevelChange}>Medium</button>
+                    <button value='high' onClick={this.handleLevelChange}>Hight</button>
                 </div>
                 <button input type='submit' value='Next' onClick={this.handleSubmit}>
                     <Link to='/timePicker'>Next</Link>
