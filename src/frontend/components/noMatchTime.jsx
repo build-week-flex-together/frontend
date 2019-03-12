@@ -1,5 +1,7 @@
 import React from 'react';
 
+// buddy does not have a time range that matches the linked senior partner
+// provides manual option for time assignments/match
 const NoMatchTime = () => {
     return (
         <div>

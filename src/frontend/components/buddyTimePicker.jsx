@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const BuddyTimePick = () => {
+const BuddyTimePicker = () => {
     return (
         <div>
             <h3>Here are some good times for [User 1], do any of
@@ -21,4 +21,4 @@ const BuddyTimePick = () => {
     );
 }
 
-export default BuddyTimePick;
+export default BuddyTimePicker;
