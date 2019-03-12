@@ -6,10 +6,10 @@ class AddBuddy extends React.Component {
         super();
         // set initial state of buddy before input
         this.state = {
-            buddyName: '',
-            buddyEmail: '',
-            buddyPhone: '',
-            buddyLevel: ''
+            name: '',
+            email: '',
+            phone: '',
+            mobility: ''
         }
     }
     // local storage after user updates for buddy state
@@ -32,15 +32,15 @@ class AddBuddy extends React.Component {
 
                 {/* input form for adding a buddy */}
                 <form>
-                    <input type='text' placeholder={"Buddy's Name"}></input>
-                    <input type='email' placeholder={"Buddy's Email"}></input>
-                    <input type='number' placeholder={"Buddy's Phone Number"}></input>
+                    <input type='text' placeholder={"Buddy's Name"} onChange={this.handleBuddyInput}></input>
+                    <input type='email' placeholder={"Buddy's Email"} onChange={this.handleBuddyInput}></input>
+                    <input type='tel' placeholder={"Buddy's Phone Number"} onChange={this.handleBuddyInput}></input>
 
                 <h1>Mobility Level (choose one)</h1>
                     {/* buttons assigned value to enter in database */}
-                    <button value='low'>Low</button>
-                    <button value='medium'>Medium</button>
-                    <button value='high'>High</button>
+                    <button value='1'>Low</button>
+                    <button value='2'>Medium</button>
+                    <button value='3'>High</button>
 
                     {/* submit / next button */}
                     <button>

@@ -29,12 +29,12 @@ class WhoAreYou extends React.Component {
                 <div>
                     {/* user chooses to be a main user (senior) or buddy (companion) */}
                     {/* changed buttons to directly link to next step, rather than needing a third "next" button */}
-                    <button value='senior' onClick={ this.handleUserClass }>
+                    <button value='1' onClick={ this.handleUserClass }>
                         <Link to='/tellMore'>
                             <h3>I am interested in low impact exercise</h3>
                         </Link> 
                     </button>
-                    <button value='buddy' onClick= { this.handleUserClass }>
+                    <button value='2' onClick= { this.handleUserClass }>
                         <Link to='/tellMore'>
                             <h3>I want to be a companion to my loved one/friend who needs to do low impact exercise.</h3>
                         </Link> 

@@ -5,9 +5,16 @@ class TimePicker extends React.Component {
     constructor() {
         super();
         this.state = { 
-            timeZones: '' 
-        }
+            availabilityTimes: [
+            {
+                timezone: '',
+                day: '',
+                hour: '',
+                minute: ''    
+            }
+        ] 
     }
+}
 
     // local storage - when user updates state
     componentDidUpdate() {
@@ -29,10 +36,10 @@ class TimePicker extends React.Component {
                     <h4>Time Zone: </h4>
                     {/* dropdown for time zones */}
                     <select>  
-                        <option value='Pacific'>Pacific Time (Los Angeles)</option>
-                        <option value='Mountain'>Mountain Time (Denver)</option>
-                        <option value='Central'>Central Time (Chicago)</option>
-                        <option value='Eastern'>Eastern Time (New York)</option>
+                        <option value='America/Los_Angeles'>Pacific Time (Los Angeles)</option>
+                        <option value='Mountain/Denver'>Mountain Time (Denver)</option>
+                        <option value='Central/Chicago'>Central Time (Chicago)</option>
+                        <option value='Eastern/NYC'>Eastern Time (New York)</option>
                     </select>
                     {/* Time Range Picker to go here */}
                     <button>

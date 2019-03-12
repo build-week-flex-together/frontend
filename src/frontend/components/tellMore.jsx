@@ -9,9 +9,9 @@ class TellMore extends React.Component {
             name: '',
             email: '',
             phone: '',
-            notifications: '',
-            level: '',
-            value: ''
+            notifyEmail: '',
+            notifyPhone: '',
+            mobility: '',
         };
     }
 
