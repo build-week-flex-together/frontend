@@ -1,33 +1,78 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TellMore = () => {
-    return (
-        <div>
-            <h3>Tell us a bit more...</h3>
-            <form>
-                <input type='text' placeholder='Name'></input>
-                <input type='text' placeholder='Email'></input>
-                <input type='number' placeholder='Phone Number'></input>
-            </form>
+class TellMore extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { // set initial states for input
+            name: '',
+            email: '',
+            phone: '',
+            notifications: '',
+            level: '',
+            value: ''
+        };
+    }
+
+    // local storage for state
+    componentDidUpdate(){
+        localStorage.setItem('buddyInput', JSON.stringify(this.state));
+    }
+    // change handlers for input (needs to be combined)
+    handleNameChange = (e) => {
+        e.preventDefault();
+        this.setState({ name: e.target.value });
+    }
+    handleEmailChange = (e) => {
+        e.preventDefault();
+        this.setState({ email: e.target.value });
+    }
+    handlePhoneChange = (e) => {
+        e.preventDefault();
+        this.setState({ phone: e.target.value });
+    }
+    handleNotificationsChange = (e) => {
+        e.preventDefault();
+        this.setState({ notifications: e.target.value})
+    }
+    handleLevelChange = (e) => {
+        e.preventDefault();
+        this.setState({ level: e.target.value })
+    }
+
+    render() {
+        return (
             <div>
-                <p>I prefer to receive notifications by </p>
-                <select>
-                    <option value='email'>Email</option>
-                    <option value='text'>Text</option>
-                </select>
+                <h3>Tell us a bit more...</h3>
+                <form>
+                    <input type='text' placeholder='Name' onChange={this.handleNameChange} value={this.state.name}></input>
+                    <input type='email' placeholder='Email' onChange={this.handleEmailChange} value={this.state.email}></input>
+                    <input type='tel' placeholder='Phone Number' onChange={this.handlePhoneChange} value={this.state.phone}></input>
+                <div>
+                    <p>I prefer to receive notifications by: </p>
+                        {/* notification type selector */}
+                        <form>
+                            <label>Email</label>
+                            <input name='email' type='checkbox' value='email' />
+                            <label>Text</label>
+                            <input name='text' type='checkbox' value='text' />
+                        </form>
+                </div>
+                <div>
+                    <p>Mobility Level (choose one)</p>
+                    {/* workout level buttons - need to style for color change on click */}
+                    <button value='low' onClick={this.handleLevelChange}>Low</button>
+                    <button value='medium' onClick={this.handleLevelChange}>Medium</button>
+                    <button value='high' onClick={this.handleLevelChange}>High</button>
+                </div>
+                <button input type='submit' value='Next' onClick={this.handleSubmit}>
+                    <Link to='/timePicker'>Next</Link>
+                </button>
+                </form>
             </div>
-            <div>
-                <p>Mobility Level (choose one)</p>
-                <button>Low</button>
-                <button>Medium</button>
-                <button>Hight</button>
-            </div>
-            <button>
-                <Link to='/timePicker'>Next</Link>
-            </button>
-        </div>
-    );
+        );
+    }
 }
 
 export default TellMore;

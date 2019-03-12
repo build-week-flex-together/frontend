@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
+
 import App from './frontend/App';
+
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router-dom';
@@ -10,7 +13,7 @@ import TellMore from './frontend/components/tellMore';
 import TimePicker from './frontend/components/timePicker';
 import AddBuddy from './frontend/components/addBuddy';
 import Thanks from './frontend/components/thanks';
-import BuddyTimePick from './frontend/components/buddyTimePick';
+import BuddyTimePicker from './frontend/components/buddyTimePicker';
 import TimeAssignment from './frontend/components/timeAssignment';
 import NoMatchTime from './frontend/components/noMatchTime';
 
@@ -24,7 +27,7 @@ ReactDOM.render(
             <Route path='/timePicker' exact component={TimePicker} />
             <Route path='/addBuddy' exact component={AddBuddy} />
             <Route path='/thanks' exact component={Thanks} />
-            <Route path='/buddyTimePick' exact component={BuddyTimePick} />
+            <Route path='/buddyTimePicker' exact component={BuddyTimePicker} />
             <Route path='/timeAssignment' exact component={TimeAssignment} />
             <Route path='/noMatchTime' exact component={NoMatchTime} />
         </div>
