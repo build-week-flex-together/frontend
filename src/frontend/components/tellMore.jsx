@@ -51,13 +51,17 @@ class TellMore extends React.Component {
                     <input type='tel' placeholder='Phone Number' onChange={this.handlePhoneChange} value={this.state.phone}></input>
                 <div>
                     <p>I prefer to receive notifications by: </p>
-                    <select>
-                        <option value='email'>Email</option>
-                        <option value='text'>Text</option>
-                    </select>
+                        {/* notification type selector */}
+                        <form>
+                            <label>Email</label>
+                            <input name='email' type='checkbox' value='email' />
+                            <label>Text</label>
+                            <input name='text' type='checkbox' value='text' />
+                        </form>
                 </div>
                 <div>
                     <p>Mobility Level (choose one)</p>
+                    {/* workout level buttons - need to style for color change on click */}
                     <button value='low' onClick={this.handleLevelChange}>Low</button>
                     <button value='medium' onClick={this.handleLevelChange}>Medium</button>
                     <button value='high' onClick={this.handleLevelChange}>Hight</button>
