@@ -19,27 +19,40 @@ class TellMore extends React.Component {
     componentDidUpdate(){
         localStorage.setItem('buddyInput', JSON.stringify(this.state));
     }
-    // change handlers for input (needs to be combined)
-    handleNameChange = (e) => {
-        e.preventDefault();
-        this.setState({ name: e.target.value });
+    // change handler for input (needs to be combined)
+    handleBuddyInfo = (e) => {
+        this.setState({
+            buddy: {
+                ...this.state.buddy,
+                [e.target.name]: e.target.value,
+                [e.target.email]: e.target.value,
+                [e.target.phone]: e.target.value,
+                [e.target.notifyEmail]: e.target.value,
+                [e.target.notifyPhone]: e.target.value,
+                [e.target.mobility]: e.target.value
+            }
+        })
     }
-    handleEmailChange = (e) => {
-        e.preventDefault();
-        this.setState({ email: e.target.value });
-    }
-    handlePhoneChange = (e) => {
-        e.preventDefault();
-        this.setState({ phone: e.target.value });
-    }
-    handleNotificationsChange = (e) => {
-        e.preventDefault();
-        this.setState({ notifications: e.target.value})
-    }
-    handleLevelChange = (e) => {
-        e.preventDefault();
-        this.setState({ level: e.target.value })
-    }
+    // handleNameChange = (e) => {
+    //     e.preventDefault();
+    //     this.setState({ name: e.target.value });
+    // }
+    // handleEmailChange = (e) => {
+    //     e.preventDefault();
+    //     this.setState({ email: e.target.value });
+    // }
+    // handlePhoneChange = (e) => {
+    //     e.preventDefault();
+    //     this.setState({ phone: e.target.value });
+    // }
+    // handleNotificationsChange = (e) => {
+    //     e.preventDefault();
+    //     this.setState({ notifications: e.target.value})
+    // }
+    // handleLevelChange = (e) => {
+    //     e.preventDefault();
+    //     this.setState({ level: e.target.value })
+    // }
 
     render() {
         return (

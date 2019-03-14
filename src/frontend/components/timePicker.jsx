@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import TimeBlockDisplay from './timeDisplay/timeBlockDisplay';
+
 
 class TimePicker extends React.Component {
     constructor() {
@@ -7,23 +9,24 @@ class TimePicker extends React.Component {
         this.state = { 
             availabilityTimes: [
             {
-                timezone: '',
-                day: '',
-                hour: '',
-                minute: ''    
+                days: '',
+                timezone: '' 
             }
         ] 
     }
 }
-
-    // local storage - when user updates state
-    componentDidUpdate() {
-        localStorage.setItem('timePicker', JSON.stringify(this.state));
+    // e handler for day/time choice from time picker (calendar)
+    handleDayTimeChoice = (e) => {
+        this.setState({
+            days: e.target.value
+         })
     }
 
     // e handler for dropdown menu of time zones
     handleTimeZone = (e) => {
-        this.setState({ timeZones: e.target.value })
+        this.setState({ 
+            timeZones: e.target.value 
+        })
     }
 
     render() {
@@ -41,8 +44,13 @@ class TimePicker extends React.Component {
                         <option value='Central/Chicago'>Central Time (Chicago)</option>
                         <option value='Eastern/NYC'>Eastern Time (New York)</option>
                     </select>
+                    
                     {/* Time Range Picker to go here */}
-                    <button>
+                    <div>
+                        <TimeBlockDisplay />
+                    </div>
+
+                    <button onClick={this.handleTimeZone}>
                         <Link to='/addBuddy'>Next</Link>
                     </button>
                 </form>
