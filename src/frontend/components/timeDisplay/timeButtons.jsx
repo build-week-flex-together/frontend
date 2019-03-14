@@ -6,7 +6,7 @@ import './timeDisplay.css';
 const TimeButtons = (props) => {
     const handleClick = (e) => {
         e.preventDefault();
-        // props.clickHandler(props.time, props.day);
+        props.clickHandler(props.time, props.day);
     };
 
     return (
