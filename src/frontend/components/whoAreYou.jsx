@@ -20,7 +20,7 @@ class WhoAreYou extends React.Component {
     }
 
     handleSubmitUserClass = () => {
-        localStorage.setItem('is_companion')
+        this.state.is_companion = localStorage.setItem('is_companion')
     }
    
 
@@ -34,7 +34,7 @@ class WhoAreYou extends React.Component {
                     {/* user chooses to be a main user (senior) or buddy (companion) */}
                     {/* changed buttons to directly link to next step, rather than needing a third "next" button */}
                     {/* passes data */}
-                    <Link to={{pathname: '/tellMore', state: {is_companion: 'senior'}}}>
+                    <Link onClick}>
                         <button value={true} onClick={ this.handleUserClass }>
                                 I am interested in low impact exercise
                         </button>
