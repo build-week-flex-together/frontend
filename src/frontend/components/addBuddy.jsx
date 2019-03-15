@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
+// import axios from 'axios';
 
 class AddBuddy extends React.Component {
     constructor() {
@@ -13,13 +14,18 @@ class AddBuddy extends React.Component {
         }
     }
     // local storage after user updates for buddy state
-    componentDidUpdate() {
-        localStorage.setItem('addBuddy', JSON.stringify(this.state));
-    }
+    // componentDidUpdate() {
+    //     localStorage.setItem('addBuddy', JSON.stringify(this.state));
+    // }
     // handler for buddy input => sets state to user provided value
     handleBuddyInput = (e) => {
+        e.preventDefault();
         this.setState({ level:  e.target.value })
-    }
+
+        // const { name, email, phone, notifyEmail, notifyPhone, mobility, availabilityTimes:[timezone, day, hour, minute]} = this.state;
+        // const url = ('https://test-ft-api.herokuapp.com/api/auth/onboard');
+
+}
     render() {
         return (
             <div>

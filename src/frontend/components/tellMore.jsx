@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 class TellMore extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.location)
 
         this.state = { // set initial states for input
             name: '',
@@ -24,7 +25,7 @@ class TellMore extends React.Component {
         this.setState({
             buddy: {
                 ...this.state.buddy,
-                [e.target.name]: e.target.value,
+                name: e.target.value,
                 [e.target.email]: e.target.value,
                 [e.target.phone]: e.target.value,
                 [e.target.notifyEmail]: e.target.value,
@@ -80,7 +81,17 @@ class TellMore extends React.Component {
                     <button value='high' onClick={this.handleLevelChange}>High</button>
                 </div>
                 <button input type='submit' value='Next' onClick={this.handleSubmit}>
-                    <Link to='/timePicker'>Next</Link>
+
+                <Link to={{pathname: '/timePicker', state: {
+                    // needs to be filled in
+                    name: '',
+                    email: '',
+                    phone: '',
+                    notifyEmail: '',
+                    notifyPhone: '',
+                    mobility: ''
+                }}}>Next</Link>
+
                 </button>
                 </form>
             </div>
