@@ -2,6 +2,16 @@ import React from 'react';
 import TimeButtons from './timeButtons';
 import './timeDisplay.css';
 
+ const times = [
+    '12:00', '12:30', '1:00', '1:30', '2:00', '2:30', '3:00', '3:30', '4:00', '4:30',
+    '5:00', '5:30', '6:00', '6:30', '7:00', '7:30', '8:00', '8:30', '9:00', '9:30',
+    '10:00', '10:30', '11:00', '11:30'
+]
+
+const days = [
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+]
+
 class TimeBlockDisplay extends React.Component {
     constructor(props) {
         super(props);
@@ -25,11 +35,20 @@ class TimeBlockDisplay extends React.Component {
     // PLEASE FEEL FREE TO LAUGH AT THIS.
     // this should all be updated to two nested arrays, but I got in too deep trying to figure something out
     render() {
+
+    const timeBlocksAM = times.map(x => <TimeButtons time={`${x} am`} />);
+    const timeBlocksPM = times.map(x => <TimeButtons time={`${x} pm`} />);
+    const dayBlock = days.map(x => value={days});
+
     return (
         <div className="timePickerContainer">
             <div className='dayWrapper'>
                 <label>Sunday</label>
-                <TimeButtons time={'12:00am'} day={'Sunday'} clickHandler={this.handleChosenTime}/>
+
+                {timeBlocksAM}
+                {timeBlocksPM}
+
+                {/* <TimeButtons time={'12:00am'} day={'Sunday'} clickHandler={this.handleChosenTime}/>
                 <TimeButtons time={'12:30am'} day={'Sunday'} clickHandler={this.handleChosenTime} />
                 <TimeButtons time={'1:00am'} day={'Sunday'} clickHandler={this.handleChosenTime} />
                 <TimeButtons time={'1:30am'} day={'Sunday'} clickHandler={this.handleChosenTime} />
@@ -76,7 +95,7 @@ class TimeBlockDisplay extends React.Component {
                 <TimeButtons time={'10:00pm'} day={'Sunday'} clickHandler={this.handleChosenTime}/>
                 <TimeButtons time={'10:30pm'} day={'Sunday'} clickHandler={this.handleChosenTime}/>
                 <TimeButtons time={'11:00pm'} day={'Sunday'}clickHandler={this.handleChosenTime} />
-                <TimeButtons time={'11:30pm'} day={'Sunday'} clickHandler={this.handleChosenTime}/>
+                <TimeButtons time={'11:30pm'} day={'Sunday'} clickHandler={this.handleChosenTime}/> */}
             </div>
             
 

@@ -54,7 +54,6 @@ class TellMore extends React.Component {
     handleNext = (e) => {
         e.preventDefault();        
         
-        // push the data forward to the next page
         this.props.history.push('/timePicker')  
     }
 

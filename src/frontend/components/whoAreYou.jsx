@@ -17,7 +17,7 @@ class WhoAreYou extends React.Component {
         localStorage.setItem('is_companion', e.target.value);  // local storage
     }
 
-    handleNext = () => {
+    handleNext = (e) => {
         e.preventDefault();
         this.props.history.push('/tellMore')  
     }
