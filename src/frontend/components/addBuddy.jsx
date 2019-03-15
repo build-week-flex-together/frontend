@@ -22,10 +22,10 @@ class AddBuddy extends React.Component {
         e.preventDefault();
         this.setState({ level:  e.target.value })
 
-    handleMobility = (e) => {
-        e.preventDefault();
-        this.setState({ value: e.target.value })
-    }
+    // handleMobility = (e) => {
+    //     e.preventDefault();
+    //     this.setState({ value: e.target.value })
+    // }
 
         // const { name, email, phone, notifyEmail, notifyPhone, mobility, availabilityTimes:[timezone, day, hour, minute]} = this.state;
         // const url = ('https://test-ft-api.herokuapp.com/api/auth/onboard');
