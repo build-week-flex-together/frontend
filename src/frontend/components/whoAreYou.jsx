@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 class WhoAreYou extends React.Component {
     constructor() {
         super();
         this.state = {
-            is_companion: ''
+            is_companion: 0
         }
     }
 
@@ -15,10 +14,12 @@ class WhoAreYou extends React.Component {
         this.setState({
             is_companion: e.target.value  // updated to is_companion match API
         })
-        // this.state.is_companion = localStorage.setItem('is_companion', JSON.stringify(this.state));  // local storage
+        localStorage.setItem('is_companion', e.target.value);  // local storage
+    }
 
+    handleNext = () => {
+        e.preventDefault();
         this.props.history.push('/tellMore')  
-        console.log(this.state.is_companion)
     }
    
 
@@ -26,22 +27,19 @@ class WhoAreYou extends React.Component {
         return (
             <div>
                 <h1>Who are you?</h1>
-                <div>Loading Bar will go here...</div>
                 <h2>Choose 1: </h2>
                 <div>
                     {/* user chooses to be a main user (senior) or buddy (companion) */}
                     {/* changed buttons to directly link to next step, rather than needing a third "next" button */}
                     {/* passes data */}
-                    <Link onClick={ this.handleSubmitUserClass }>
-                        <button value={true} onClick={ this.handleUserClass }>
+                        <button value={1} onClick={ this.handleUserClass }>
                                 I am interested in low impact exercise
                         </button>
-                    </Link>
-                    <Link to={{pathname: '/tellMore', state: {is_companion: 'senior'}}}>
-                        <button value={false} onClick= { this.handleUserClass }>
+                        <button value={2} onClick= { this.handleUserClass }>
                                 I want to be a companion to my loved one/friend who needs to do low impact exercise.
                         </button>
-                    </Link>
+                        <br></br>
+                        <button onClick = {this.handleNext }>Next</button>
                 </div>
                 {/* exercise user or companion will both go to 'TellMeMore' - choice won't matter but status should be entered into database */}
             </div>
