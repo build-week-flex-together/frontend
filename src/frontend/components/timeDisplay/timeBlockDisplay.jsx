@@ -20,20 +20,22 @@ class TimeBlockDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            day: '',
-            time: ''
+            selectedTimes:[]
         }
 
         this.handleChosenTime = this.handleChosenTime.bind(this);
     }
 
-    // handler for chosen time button(s)
     handleChosenTime = (time, day) => {
-        this.setState({
-            day: day,
-            time: time
-        });
-        console.log(`${day}, ${time}`);
+        let times = this.state.selectedTimes.slice();
+        let filteredTimes = times.filter(x => x.day === day && x.time === time);
+        if(filteredTimes.length > 0) {
+            times=times.filter(x => x.day !== day && x.time !== time);
+        } else {
+            let timeObj = {day: day, time: time};
+            times.push(timeObj);
+        }
+        this.setState({selectedTimes: times});
     }
 
     render() {
