@@ -53,6 +53,7 @@ class AddBuddy extends React.Component {
                 </p>
 
                 <hr></hr>
+            
 
                 <form>
                     <input type='text' placeholder={"Buddy's Name"} onChange={this.handleBuddyInput}></input>

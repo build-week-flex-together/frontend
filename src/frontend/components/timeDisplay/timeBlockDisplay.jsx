@@ -30,12 +30,13 @@ class TimeBlockDisplay extends React.Component {
         let times = this.state.selectedTimes.slice();
         let filteredTimes = times.filter(x => x.day === day && x.time === time);
         if(filteredTimes.length > 0) {
-            times=times.filter(x => x.day !== day && x.time !== time);
+            times=times.filter(x => x.day !== day || x.time !== time);
         } else {
             let timeObj = {day: day, time: time};
             times.push(timeObj);
         }
         this.setState({selectedTimes: times});
+        localStorage.setItem('selectedTimes', JSON.stringify(times));
     }
 
     render() {
@@ -43,7 +44,7 @@ class TimeBlockDisplay extends React.Component {
         const dayBlocks = days.map(day => {
             let timeBlocks = times.map(time => <TimeButtons time={time} key={time+day} day={day} clickHandler ={this.handleChosenTime} />);
             return (
-                <div className='dayWrapper'>
+                <div className='dayWrapper' key={day}>
                     <label>{day}</label>
                     {timeBlocks}
                 </div>

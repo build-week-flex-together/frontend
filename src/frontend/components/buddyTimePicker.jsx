@@ -17,6 +17,10 @@ class BuddyTimePicker extends React.Component {
         }
     }
     render() {
+        let selTimes = JSON.parse(localStorage.getItem('selectedTimes'));
+
+        // const selDays = selTimes.map
+
         return (
             <div>
                 <h3>Here are some good times for [User 1], do any of
@@ -26,7 +30,10 @@ class BuddyTimePicker extends React.Component {
                     To complete the beta, we are asking that people commit to one
                     30-minute time block once per week.  Please choose a time that works well for you.
                 </p>
-                <div>SELECTED CALENDAR TIMES WILL GO HERE</div>
+                <div className="selectedTimesWrapper">
+                    <label>{selTimes[0].day}</label>
+                </div>
+                
                 {/* Button needs to be 'Next' until user chooses times, then it will change to 'Submit' */}
                 <button>
                     {/* go here if user and buddy times match up */}
