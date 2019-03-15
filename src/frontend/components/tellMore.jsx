@@ -15,11 +15,6 @@ class TellMore extends React.Component {
             mobility: '',
         };
     }
-
-    // local storage for state
-    componentDidUpdate(){
-        localStorage.setItem('buddyInput', JSON.stringify(this.state));
-    }
     // change handler for input (needs to be combined)
     handleBuddyInfo = (e) => {
         this.setState({
@@ -33,6 +28,7 @@ class TellMore extends React.Component {
                 [e.target.mobility]: e.target.value
             }
         })
+        localStorage.setItem('buddyInput', JSON.stringify(this.state));
     }
     // handleNameChange = (e) => {
     //     e.preventDefault();

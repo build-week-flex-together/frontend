@@ -15,7 +15,7 @@ class WhoAreYou extends React.Component {
         this.setState({
             is_companion: e.target.value  // updated to is_companion match API
         })
-        this.state.is_companion = localStorage.setItem('is_companion')  // local storage
+        this.state.is_companion = localStorage.setItem('is_companion', JSON.stringify(this.state));  // local storage
 
         this.props.history.push('/tellMore')  
         console.log(this.state.is_companion)

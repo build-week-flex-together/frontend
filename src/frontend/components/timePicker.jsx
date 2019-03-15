@@ -15,18 +15,19 @@ class TimePicker extends React.Component {
         ] 
     }
 }
-    // e handler for day/time choice from time picker (calendar)
-    handleDayTimeChoice = (e) => {
-        this.setState({
-            days: e.target.value
-         })
-    }
+    // // e handler for day/time choice from time picker (calendar)
+    // handleDayTimeChoice = (e) => {
+    //     this.setState({
+    //         days: e.target.value
+    //      })
+    // }
 
     // e handler for dropdown menu of time zones
     handleTimeZone = (e) => {
         this.setState({ 
-            timeZones: e.target.value 
+            timeZone: e.target.value 
         })
+        localStorage.setItem('timeZone', JSON.stringify(this.state));
     }
 
     render() {
@@ -38,7 +39,7 @@ class TimePicker extends React.Component {
                     30-minute time block once per week. Please choose which times work well for you.</p>
                     <h4>Time Zone: </h4>
                     {/* dropdown for time zones */}
-                    <select>  
+                    <select onChange={this.handleTimeZone} value={this.state.timeZone}>  
                         <option value='America/Los_Angeles'>Pacific Time (Los Angeles)</option>
                         <option value='Mountain/Denver'>Mountain Time (Denver)</option>
                         <option value='Central/Chicago'>Central Time (Chicago)</option>

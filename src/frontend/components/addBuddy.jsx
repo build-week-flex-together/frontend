@@ -14,9 +14,9 @@ class AddBuddy extends React.Component {
         }
     }
     // local storage after user updates for buddy state
-    // componentDidUpdate() {
-    //     localStorage.setItem('addBuddy', JSON.stringify(this.state));
-    // }
+    componentDidUpdate() {
+        localStorage.setItem('addBuddy', JSON.stringify(this.state));
+    }
     // handler for buddy input => sets state to user provided value
     handleBuddyInput = (e) => {
         e.preventDefault();
