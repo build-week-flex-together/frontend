@@ -5,7 +5,7 @@ class WhoAreYou extends React.Component {
     constructor() {
         super();
         this.state = {
-            userClass: ''
+            is_companion: ''
         }
     }
 
@@ -13,11 +13,16 @@ class WhoAreYou extends React.Component {
     handleUserClass = (e) => {
         e.preventDefault();
         this.setState({
-            userClass: e.target.value
+            is_companion: e.target.value  // updated to is_companion match API
         })
-        this.props.history.push('/tellMore')
-        console.log(this.state.userClass)
+        this.props.history.push('/tellMore')  
+        console.log(this.state.is_companion)
     }
+
+    handleSubmitUserClass = () => {
+        localStorage.setItem('is_companion')
+    }
+   
 
     render() {
         return (
@@ -29,13 +34,13 @@ class WhoAreYou extends React.Component {
                     {/* user chooses to be a main user (senior) or buddy (companion) */}
                     {/* changed buttons to directly link to next step, rather than needing a third "next" button */}
                     {/* passes data */}
-                    <Link to={{pathname: '/tellMore', state: {userClass: 'senior'}}}>
-                        <button value='senior' onClick={ this.handleUserClass }>
+                    <Link to={{pathname: '/tellMore', state: {is_companion: 'senior'}}}>
+                        <button value={true} onClick={ this.handleUserClass }>
                                 I am interested in low impact exercise
                         </button>
                     </Link>
-                    <Link to={{pathname: '/tellMore', state: {userClass: 'senior'}}}>
-                        <button value='buddy' onClick= { this.handleUserClass }>
+                    <Link to={{pathname: '/tellMore', state: {is_companion: 'senior'}}}>
+                        <button value={false} onClick= { this.handleUserClass }>
                                 I want to be a companion to my loved one/friend who needs to do low impact exercise.
                         </button>
                     </Link>
