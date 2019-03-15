@@ -68,12 +68,10 @@ class TellMore extends React.Component {
                     <div>
                         <p>I prefer to receive notifications by: </p>
                             {/* notification type selector */}
-                            <form>
                                 <label>Email</label>
                                 <input name='email' type='checkbox' value='email' />
                                 <label>Text</label>
                                 <input name='text' type='checkbox' value='text' />
-                            </form>
                     </div>
                     <div>
                         <p>Mobility Level (choose one)</p>

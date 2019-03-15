@@ -39,7 +39,7 @@ class TimeBlockDisplay extends React.Component {
     render() {
 
         const dayBlocks = days.map(day => {
-            let timeBlocks = times.map(time => <TimeButtons time={time} day={day} clickHandler ={this.handleChosenTime} />);
+            let timeBlocks = times.map(time => <TimeButtons time={time} key={time+day} day={day} clickHandler ={this.handleChosenTime} />);
             return (
                 <div className='dayWrapper'>
                     <label>{day}</label>

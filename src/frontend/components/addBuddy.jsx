@@ -1,37 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
-// import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class AddBuddy extends React.Component {
     constructor() {
         super();
-        // set initial state of buddy before input
         this.state = {
             name: '',
             email: '',
             phone: '',
             mobility: ''
         }
+
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handlePhoneChange = this.handlePhoneChange.bind(this);
+        this.handleMobility = this.handleMobility.bind(this);
+        this.handleNext = this.handleNext.bind(this);
     }
-    // local storage after user updates for buddy state
-    componentDidUpdate() {
-        localStorage.setItem('addBuddy', JSON.stringify(this.state));
-    }
-    // handler for buddy input => sets state to user provided value
-    handleBuddyInput = (e) => {
+
+    handleNameChange = (e) => {
         e.preventDefault();
-        this.setState({ level:  e.target.value })
+        this.setState({ name: e.target.value });
+        localStorage.setItem('buddyName', e.target.value);
+    }
+    handleEmailChange = (e) => {
+        e.preventDefault();
+        this.setState({ email: e.target.value });
+        localStorage.setItem('buddyEmail', e.target.value);
+    }
+    handlePhoneChange = (e) => {
+        e.preventDefault();
+        this.setState({ phone: e.target.value });
+        localStorage.setItem('buddyPhone', e.target.value);
+    }
+    handleMobility = (e) => {
+        e.preventDefault();
+        this.setState({ mobility: e.target.value })
+        localStorage.setItem('buddyMobility', e.target.value);
+    }
 
-    // handleMobility = (e) => {
-    //     e.preventDefault();
-    //     this.setState({ value: e.target.value })
-    // }
+    handleNext = (e) => {
+        e.preventDefault();
+        this.props.history.push('/thanks')
+    }
 
-        // const { name, email, phone, notifyEmail, notifyPhone, mobility, availabilityTimes:[timezone, day, hour, minute]} = this.state;
-        // const url = ('https://test-ft-api.herokuapp.com/api/auth/onboard');
-
-
-}
     render() {
         return (
             <div>
@@ -42,19 +54,16 @@ class AddBuddy extends React.Component {
 
                 <hr></hr>
 
-                {/* input form for adding a buddy */}
                 <form>
                     <input type='text' placeholder={"Buddy's Name"} onChange={this.handleBuddyInput}></input>
                     <input type='email' placeholder={"Buddy's Email"} onChange={this.handleBuddyInput}></input>
                     <input type='tel' placeholder={"Buddy's Phone Number"} onChange={this.handleBuddyInput}></input>
 
-                <h1>Mobility Level (choose one)</h1>
-                    {/* buttons assigned value to enter in database */}
+                    <h1>Mobility Level (choose one)</h1>
                     <button value='1'>Low</button>
                     <button value='2'>Medium</button>
                     <button value='3'>High</button>
 
-                    {/* submit / next button */}
                     <button>
                         <Link to='/thanks'>Next</Link>
                     </button>
