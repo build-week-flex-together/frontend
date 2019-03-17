@@ -3,13 +3,13 @@ import TimeButtons from './timeButtons';
 import './timeDisplay.css';
 
 const times = [
-    '12:00am', '12:30am', '1:00am', '1:30am', '2:00am', '2:30am', '3:00am', '3:30am', '4:00am', '4:30am',
-    '5:00am', '5:30am', '6:00am', '6:30am', '7:00am', '7:30am', '8:00am', '8:30am', '9:00am', '9:30am',
-    '10:00am', '10:30am', '11:00am', '11:30am',
+    '12:00 am', '12:30 am', '1:00 am', '1:30 am', '2:00 am', '2:30 am', '3:00 am', '3:30 am', '4:00 am', '4:30 am',
+    '5:00 am', '5:30 am', '6:00 am', '6:30 am', '7:00 am', '7:30 am', '8:00 am', '8:30 am', '9:00 am', '9:30 am',
+    '10:00 am', '10:30 am', '11:00 am', '11:30 am',
 
-    '12:00pm', '12:30pm', '1:00pm', '1:30pm', '2:00pm', '2:30pm', '3:00pm', '3:30pm', '4:00pm', '4:30pm',
-    '5:00pm', '5:30pm', '6:00pm', '6:30pm', '7:00pm', '7:30pm', '8:00pm', '8:30pm', '9:00pm', '9:30pm',
-    '10:00pm', '10:30pm', '11:00pm', '11:30pm'
+    '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm', '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
+    '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm', '7:00 pm', '7:30 pm', '8:00 pm', '8:30 pm', '9:00 pm', '9:30 pm',
+    '10:00 pm', '10:30 pm', '11:00 pm', '11:30 pm'
 ]
 
 const days = [
@@ -20,23 +20,57 @@ class TimeBlockDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTimes:[]
+            selectedTimes:[
+                {
+                    day: 'Sunday',
+                    times: []
+                },
+                {
+                    day: 'Monday',
+                    times: []
+                },
+                {
+                    day: 'Tuesday',
+                    times: []
+                },
+                {
+                    day: 'Wednesday',
+                    times: []
+                },
+                {
+                    day: 'Thursday',
+                    times: []
+                },
+                {
+                    day: 'Friday',
+                    times: []
+                },
+                {
+                    day: 'Saturday',
+                    times: []
+                },
+            ]
         }
 
         this.handleChosenTime = this.handleChosenTime.bind(this);
     }
 
     handleChosenTime = (time, day) => {
-        let times = this.state.selectedTimes.slice();
-        let filteredTimes = times.filter(x => x.day === day && x.time === time);
-        if(filteredTimes.length > 0) {
-            times=times.filter(x => x.day !== day || x.time !== time);
+        let selTimes = this.state.selectedTimes.slice();
+        let chosenDay = selTimes.filter(selTime => selTime.day === day)[0];
+        let chosenTime = chosenDay.times.filter(selTime => selTime === time);
+        if (chosenTime.length > 0) {
+            chosenDay.times = chosenDay.times.filter(selTime => selTime !== time);
         } else {
-            let timeObj = {day: day, time: time};
-            times.push(timeObj);
+            chosenDay.times.push(time);
         }
-        this.setState({selectedTimes: times});
-        localStorage.setItem('selectedTimes', JSON.stringify(times));
+
+        if (chosenDay.times.length > 1){
+            chosenDay.times.sort((a, b) => {
+                return new Date('1970/01/01 ' + a) - new Date('1970/01/01' + b);
+            });
+        }
+        localStorage.setItem('selectedTimes', JSON.stringify(selTimes));
     }
 
     render() {

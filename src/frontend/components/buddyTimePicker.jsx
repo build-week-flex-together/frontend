@@ -2,24 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class BuddyTimePicker extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             // initial state of buddy's available times
             availabilityTimes: [
                 {
-                    timezone: '',
                     day: '',
-                    hour: '',
-                    minute: ''
+                    time: ''
                 }
             ]
         }
     }
     render() {
         let selTimes = JSON.parse(localStorage.getItem('selectedTimes'));
+        if (selTimes === null) {
+            console.log('No times were selected.');
+        } else {
 
-        // const selDays = selTimes.map
+        }
 
         return (
             <div>
@@ -31,15 +32,13 @@ class BuddyTimePicker extends React.Component {
                     30-minute time block once per week.  Please choose a time that works well for you.
                 </p>
                 <div className="selectedTimesWrapper">
-                    <label>{selTimes[0].day}</label>
+                    {/* <label>{selTimes[0].day}</label> */}
                 </div>
                 
                 {/* Button needs to be 'Next' until user chooses times, then it will change to 'Submit' */}
                 <button>
-                    {/* go here if user and buddy times match up */}
                     <Link to='/thanks'>Next</Link>
                 </button>
-                    {/* go here if there's none of these times for for ze buddy */}
                     <Link to='/noMatchTime'>None of these times work for me</Link>
             </div>
         );
