@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import TimeButtons from './timeDisplay/timeButtons';
+
 class BuddyTimePicker extends React.Component {
     constructor(props) {
         super(props);
@@ -8,31 +10,65 @@ class BuddyTimePicker extends React.Component {
             // initial state of buddy's available times
             availabilityTimes: [
                 {
-                    day: '',
-                    time: '',
-                    bgColor: 'white',
-                    textColor: 'black'
+                    day: "Sunday",
+                    times: []
+                },
+                {
+                    day: "Monday",
+                    times: []
+                },
+                {
+                    day: "Tuesday",
+                    times: []
+                },
+                {
+                    day: "Wednesday",
+                    times: []
+                },
+                {
+                    day: "Thursday",
+                    times: []
+                },
+                {
+                    day: "Friday",
+                    times: []
+                },
+                {
+                    day: "Saturday",
+                    times: []
                 }
             ]
         }
+
+        this.handleClick = this.handleClick.bind(this);
+        this.handleNext = this.handleNext.bind(this);
     }
 
 
-    handleClick = (e) => {
-        e.preventDefault();
-        if (this.state.bgColor === 'white') {
-            this.setState({
-                bgColor: 'rgb(0,33,71)',
-                textColor: 'white'
-            });
+    handleClick = (time, day) => {
+        let selTimes = this.state.availabilityTimes.slice();
+        let chosenDay = selTimes.filter(selTime => selTime.day === day)[0];
+        let chosenTime = chosenDay.times.filter(selTime => selTime === time);
+        if (chosenTime.length > 0) {
+            // Remove the time from the array
+            chosenDay.times = chosenDay.times.filter(selTime => selTime !== time);
         } else {
-            this.setState({
-                bgColor: 'white',
-                textColor: 'black'
+            chosenDay.times.push(time);            
+        }
+
+        // Sort the times so they ascend
+        if (chosenDay.times.length > 1) {
+            chosenDay.times.sort((a, b) => {
+                return new Date("1970/01/01 " + a) - new Date("1970/01/01 " + b);
             });
         }
-        
-        // this.props.clickHandler(this.props.time, this.props.day);
+
+        this.setState({ availabilityTimes: selTimes });
+        localStorage.setItem('availabilityTimes', JSON.stringify(selTimes));
+    };
+
+    handleNext = () => {
+        this.props.history.push("/timeAssignment");
     };
 
     render() {
@@ -48,12 +84,19 @@ class BuddyTimePicker extends React.Component {
             let selectedTimes = selTimes.filter(times => times.times.length > 0);
             availabilityDisplay = selectedTimes.map(selected => {
                 const timeBlocks = selected.times.map(time => 
-                <button 
-                    className='timeBlock' 
-                    onClick={this.handleClick}
-                    style={{backgroundColor: this.state.bgColor, color: this.state.textColor}}>{time}
-                </button>
-            );
+                    <TimeButtons time={time} day={selected.day} 
+                        clickHandler={this.handleClick}
+                    />
+                // <button 
+                //     className='timeBlock' 
+                //     onClick={this.handleClick}
+                //     style={{backgroundColor: this.state.bgColor, color: this.state.textColor}}
+                //     key={selected.day+time}
+                //     day={selected.day}
+                //     time={time}>
+                //     {time}
+                // </button>
+                );
                 
                 return (<div className='buddyTimeChoices' key={selected.day}>
                     <label>{selected.day}</label>
@@ -63,9 +106,11 @@ class BuddyTimePicker extends React.Component {
             });
         }
 
+        let userName = localStorage.getItem('name');
+
         return (
             <div className='bigText'>
-                <h3>Here are some good times for [User 1], do any of
+                <h3>Here are some good times for {userName}, do any of
                     these work for you?
                 </h3>
                 <p>
@@ -77,8 +122,8 @@ class BuddyTimePicker extends React.Component {
                 </div>
                 
                 {/* Button needs to be 'Next' until user chooses times, then it will change to 'Submit' */}
-                <button className='nextBtn'>
-                    <Link to='/thanks'>Next</Link>
+                <button className='nextBtn' onClick={this.handleNext}>
+                    Next
                 </button>
                 <br></br>
                     <Link to='/noMatchTime'>None of these times work for me</Link>
