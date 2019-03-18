@@ -43,22 +43,34 @@ class AddBuddy extends React.Component {
     handleNext = (e) => {
         e.preventDefault();
 
+        let allTimes = JSON.parse(localStorage.getItem('selectedTimes'));
+        let selectedTimes = allTimes.filter(time => time.times.length > 0);
+        let formattedTimes = selectedTimes.map(time => { 
+           return ({ day: time.day, timeslots: time.times });
+        });
+
         let request = {
-            is_companion = localStorage.getItem(''),
-            name: '',
-            email: '',
-            phone_number: '',
-            notification_preference: '',
-            mobility_level: '',
-            timezone: '',
-            availability: [],
+            is_companion: localStorage.getItem('is_companion') === '1' ? true : false,
+            name: localStorage.getItem('name'),
+            email: localStorage.getItem('email'),
+            phone_number: localStorage.getItem('phone'),
+            notification_preference: localStorage.getItem('notifications'),
+            mobility_level: localStorage.getItem('mobility'),
+            timezone: localStorage.getItem('timeZone'),
+            availability: formattedTimes,
             recipient_name: localStorage.getItem('buddyName'),
             recipient_email: localStorage.getItem('buddyEmail'),
             recipient_phone_number: localStorage.getItem('buddyPhone'),
             recipient_mobility_level: localStorage.getItem('buddyMobility'),
         };
 
-        let result = axios.post("https://flextogether.herokuapp.com/api/invite", request);
+        axios.post("https://flextogether.herokuapp.com/api/invite", request)
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
 
         this.props.history.push('/thanks')
     }
@@ -72,23 +84,19 @@ class AddBuddy extends React.Component {
                 </p>
 
                 <hr></hr>
-            
 
-                <form>
-                    <input type='text' placeholder={"Buddy's Name"} onChange={this.handleBuddyInput}></input>
-                    <input type='email' placeholder={"Buddy's Email"} onChange={this.handleBuddyInput}></input>
-                    <input type='tel' placeholder={"Buddy's Phone Number"} onChange={this.handleBuddyInput}></input>
+                <input type='text' placeholder={"Buddy's Name"} onChange={this.handleNameChange}></input>
+                <input type='email' placeholder={"Buddy's Email"} onChange={this.handleEmailChange}></input>
+                <input type='tel' placeholder={"Buddy's Phone Number"} onChange={this.handlePhoneChange}></input>
 
-                    <h1>Mobility Level (choose one)</h1>
-                    <button value='Low'>Low</button>
-                    <button value='Medium'>Medium</button>
-                    <button value='High'>High</button>
+                <h1>Mobility Level (choose one)</h1>
+                <button value='Low' onClick={this.handleMobility}>Low</button>
+                <button value='Medium' onClick={this.handleMobility}>Medium</button>
+                <button value='High' onClick={this.handleMobility}>High</button>
 
-                    <button onClick={this.handleNext}>
-                        Next
-                    </button>
-                </form>
-
+                <button onClick={this.handleNext}>
+                    Next
+                </button>
             </div>
         );
     }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import TimeBlockDisplay from './timeDisplay/timeBlockDisplay';
 
 
@@ -7,21 +6,23 @@ class TimePicker extends React.Component {
     constructor() {
         super();
         this.state = { 
-            availabilityTimes: [
-            {
-                days: '',
-                timezone: '' 
-            }
-        ] 
+            timeZone: 'America/Los_Angeles'
+        };
+
+        this.handleTimeZone = this.handleTimeZone.bind(this);
+        this.handleNext = this.handleNext.bind(this);
     }
-}
 
     // e handler for dropdown menu of time zones
     handleTimeZone = (e) => {
         this.setState({ 
             timeZone: e.target.value 
-        })
-        localStorage.setItem('timeZone', JSON.stringify(this.state));
+        });
+    }
+
+    handleNext = () => {
+        localStorage.setItem('timeZone', this.state.timeZone);
+        this.props.history.push('/addBuddy');
     }
 
     render() {
@@ -35,9 +36,9 @@ class TimePicker extends React.Component {
                     {/* dropdown for time zones */}
                     <select onChange={this.handleTimeZone} value={this.state.timeZone}>  
                         <option value='America/Los_Angeles'>Pacific Time (Los Angeles)</option>
-                        <option value='Mountain/Denver'>Mountain Time (Denver)</option>
-                        <option value='Central/Chicago'>Central Time (Chicago)</option>
-                        <option value='Eastern/NYC'>Eastern Time (New York)</option>
+                        <option value='America/Denver'>Mountain Time (Denver)</option>
+                        <option value='America/Chicago'>Central Time (Chicago)</option>
+                        <option value='America/New_York'>Eastern Time (New York)</option>
                     </select>
                     
                     {/* Time Range Picker to go here */}
@@ -45,9 +46,7 @@ class TimePicker extends React.Component {
                         <TimeBlockDisplay />
                     </div>
 
-                    <button onClick={this.handleTimeZone}>
-                        <Link to='/addBuddy'>Next</Link>
-                    </button>
+                    <button onClick={this.handleNext}>Next</button>
                 </form>
             </div>
         );

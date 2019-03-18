@@ -12,6 +12,8 @@ class TellMore extends React.Component {
             notifyEmail: '',
             notifyPhone: '',
             mobility: '',
+            text_notifications: false,
+            email_notifications: false,
         };
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -23,37 +25,48 @@ class TellMore extends React.Component {
     }
 
     handleNameChange = (e) => {
-        e.preventDefault();
         this.setState({ name: e.target.value });
         localStorage.setItem('name', e.target.value);
     }
     handleEmailChange = (e) => {
-        e.preventDefault();
         this.setState({ email: e.target.value });
         localStorage.setItem('email', e.target.value);
     }
     handlePhoneChange = (e) => {
-        e.preventDefault();
         this.setState({ phone: e.target.value });
         localStorage.setItem('phone', e.target.value);
-
     }
     handleNotificationsChange = (e) => {
-        e.preventDefault();
-        this.setState({ notifications: e.target.value})
-        localStorage.setItem('notifications', e.target.value);
+        let text = this.state.text_notifications;
+        let email = this.state.email_notifications;
+        if (e.target.value === 'Email') {
+            email = e.target.checked;
+        } else if (e.target.value === 'Text') {
+            text = e.target.checked;
+        }
 
+        this.setState({ email_notifications: email, text_notications: text });
     }
     handleMobility = (e) => {
-        e.preventDefault();
         this.setState({ mobility: e.target.value })
         localStorage.setItem('mobility', e.target.value);
 
     }
 
     handleNext = (e) => {
-        e.preventDefault();        
-        
+        localStorage.setItem('name', this.state.name);
+        localStorage.setItem('email', this.state.email);
+        localStorage.setItem('phone', this.state.phone);
+        localStorage.setItem('mobility', this.state.mobility);
+
+        if (this.state.email_notifications && this.state.text_notications) {
+            localStorage.setItem('notifications', 'Text & Email');
+        } else if (this.state.email_notifications) {
+            localStorage.setItem('notifications', 'Email');
+        } else if (this.state.text_notications) {
+            localStorage.setItem('notifications', 'Text');
+        }
+
         this.props.history.push('/timePicker')  
     }
 
@@ -61,31 +74,28 @@ class TellMore extends React.Component {
         return (
             <div>
                 <h3>Tell us a bit more...</h3>
-                <form>
-                    <input type='text' placeholder='Name' onChange={this.handleNameChange} value={this.state.name}></input>
-                    <input type='email' placeholder='Email' onChange={this.handleEmailChange} value={this.state.email}></input>
-                    <input type='tel' placeholder='Phone Number' onChange={this.handlePhoneChange} value={this.state.phone}></input>
-                    <div>
-                        <p>I prefer to receive notifications by: </p>
-                            {/* notification type selector */}
-                                <label>Email</label>
-                                <input name='email' type='checkbox' value='email' />
-                                <label>Text</label>
-                                <input name='text' type='checkbox' value='text' />
-                    </div>
-                    <div>
-                        <p>Mobility Level (choose one)</p>
-                        {/* workout level buttons - need to style for color change on click */}
-                        <button value= {1} onClick={this.handleMobility}>Low</button>
-                        <button value= {2} onClick={this.handleMobility}>Medium</button>
-                        <button value= {3} onClick={this.handleMobility}>High</button>
-                    </div>
-                    <button onClick={this.handleNext}>Next</button>
-
-                </form>
+                <input type='text' placeholder='Name' onChange={this.handleNameChange} value={this.state.name}></input>
+                <input type='email' placeholder='Email' onChange={this.handleEmailChange} value={this.state.email}></input>
+                <input type='tel' placeholder='Phone Number' onChange={this.handlePhoneChange} value={this.state.phone}></input>
+                <div>
+                    <p>I prefer to receive notifications by: </p>
+                    {/* notification type selector */}
+                    <label>Email</label>
+                    <input type='checkbox' value='Email' onChange={this.handleNotificationsChange} />
+                    <label>Text</label>
+                    <input type='checkbox' value='Text' onChange={this.handleNotificationsChange} />
+                </div>
+                <div>
+                    <p>Mobility Level (choose one)</p>
+                    {/* workout level buttons - need to style for color change on click */}
+                    <button value="Low" onClick={this.handleMobility}>Low</button>
+                    <button value="Medium" onClick={this.handleMobility}>Medium</button>
+                    <button value="High" onClick={this.handleMobility}>High</button>
+                </div>
+                <button onClick={this.handleNext}>Next</button>
             </div>
         );
     }
 }
 
-export default TellMore;
+export default TellMore; 
