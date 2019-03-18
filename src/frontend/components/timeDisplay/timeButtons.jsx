@@ -1,19 +1,47 @@
 import React from 'react';
 import './timeDisplay.css';
 
-
 // creates a clickable button that will display a time block
-const TimeButtons = (props) => {
-    const handleClick = (e) => {
-        e.preventDefault();
-        props.clickHandler(props.time, props.day);
+class TimeButtons extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            bgColor: 'white',
+            textColor: 'black'
+        };
+
+        this.handleClick = this.handleClick.bind(this);
     };
 
-    return (
-        <div>
-            <button value={props.time} onClick={handleClick}>{props.time}</button>
-        </div>
-    );
+    handleClick = (e) => {
+        e.preventDefault();
+        if (this.state.bgColor === 'white') {
+            this.setState({
+                bgColor: 'rgb(0,33,71)',
+                textColor: 'white'
+            });
+        } else {
+            this.setState({
+                bgColor: 'white',
+                textColor: 'black'
+            });
+        }
+        
+        this.props.clickHandler(this.props.time, this.props.day);
+    };
+
+    render() {
+        return (
+            <div>
+                <button className='timeBlock' 
+                    value={this.props.time} 
+                    onClick={this.handleClick}
+                    style={{backgroundColor: this.state.bgColor, color: this.state.textColor}}>
+                    {this.props.time}
+                </button>
+            </div>
+        );
+    }
 };
 
 export default TimeButtons; 

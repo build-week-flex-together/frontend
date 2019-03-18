@@ -46,7 +46,7 @@ class TimePicker extends React.Component {
                         <TimeBlockDisplay />
                     </div>
 
-                    <button onClick={this.handleNext}>Next</button>
+                    <button className='nextBtn' onClick={this.handleNext}>Next</button>
                 </form>
             </div>
         );

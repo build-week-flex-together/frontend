@@ -14,6 +14,12 @@ class TellMore extends React.Component {
             mobility: '',
             text_notifications: false,
             email_notifications: false,
+            bgColor: 'white',
+            bgColor2: 'white',
+            bgColor3: 'white',
+            textColor: 'rgb(0,33,71)', 
+            textColor2: 'rgb(0,33,71)',
+            textColor3: 'rgb(0,33,71)'
         };
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -48,6 +54,17 @@ class TellMore extends React.Component {
         this.setState({ email_notifications: email, text_notications: text });
     }
     handleMobility = (e) => {
+        if (e.target.value === 'Low') {
+            this.setState({ bgColor: 'rgb(0,33,71)' });
+            this.setState({ textColor: 'white'})
+        } else if (e.target.value === 'Medium') {
+            this.setState({ bgColor2: 'rgb(0,33,71)' });
+            this.setState({ textColor2: 'white' })
+         } //else {(e.target.value === 'High') {
+        //     this.setState({ bgColor2: 'rgb(0,33,71)' });
+        //     this.setState({ textColor2: 'white' })
+        // }
+
         this.setState({ mobility: e.target.value })
         localStorage.setItem('mobility', e.target.value);
 
@@ -72,11 +89,11 @@ class TellMore extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='tellMoreText'>
                 <h3>Tell us a bit more...</h3>
-                <input type='text' placeholder='Name' onChange={this.handleNameChange} value={this.state.name}></input>
-                <input type='email' placeholder='Email' onChange={this.handleEmailChange} value={this.state.email}></input>
-                <input type='tel' placeholder='Phone Number' onChange={this.handlePhoneChange} value={this.state.phone}></input>
+                <input className='inputBoxes' type='text' placeholder='Name' onChange={this.handleNameChange} value={this.state.name}></input>
+                <input className='inputBoxes' type='email' placeholder='Email' onChange={this.handleEmailChange} value={this.state.email}></input>
+                <input className='inputBoxes' type='tel' placeholder='Phone Number' onChange={this.handlePhoneChange} value={this.state.phone}></input>
                 <div>
                     <p>I prefer to receive notifications by: </p>
                     {/* notification type selector */}
@@ -88,11 +105,11 @@ class TellMore extends React.Component {
                 <div>
                     <p>Mobility Level (choose one)</p>
                     {/* workout level buttons - need to style for color change on click */}
-                    <button value="Low" onClick={this.handleMobility}>Low</button>
-                    <button value="Medium" onClick={this.handleMobility}>Medium</button>
-                    <button value="High" onClick={this.handleMobility}>High</button>
+                    <button className='mobilityBtn' value="Low" onClick={this.handleMobility} style={{backgroundColor: this.state.bgColor, color: this.state.textColor}}>Low</button>
+                    <button className='mobilityBtn' value="Medium" onClick={this.handleMobility} style={{backgroundColor: this.state.bgColor2, color: this.state.textColor2}}>Medium</button>
+                    <button className='mobilityBtn' value="High" onClick={this.handleMobility} style={{backgroundColor: this.state.bgColor3, color: this.state.textColor3}}>High</button>
                 </div>
-                <button onClick={this.handleNext}>Next</button>
+                <button className='nextBtn' onClick={this.handleNext}>Next</button>
             </div>
         );
     }
