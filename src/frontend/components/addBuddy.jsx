@@ -66,9 +66,8 @@ class AddBuddy extends React.Component {
 
         axios.post("https://flextogether.herokuapp.com/api/invite", request)
             .then((result) => {
-                console.log(result)
-                // Store the returned token
-                localStorage.setItem("authToken", result.data.token);
+                // Post to verify so the buddy gets an email
+                axios.post(`https://flextogether.herokuapp.com/api/invite/${result.data.token}/verify`);
             })
             .catch((error) => {
                 console.log(error)
