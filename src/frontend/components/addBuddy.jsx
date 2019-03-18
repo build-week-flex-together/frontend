@@ -9,7 +9,13 @@ class AddBuddy extends React.Component {
             name: '',
             email: '',
             phone: '',
-            mobility: ''
+            mobility: '',
+            bgColor: 'white',
+            bgColor2: 'white',
+            bgColor3: 'white',
+            textColor: 'rgb(0,33,71)', 
+            textColor2: 'rgb(0,33,71)',
+            textColor3: 'rgb(0,33,71)'
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -36,6 +42,16 @@ class AddBuddy extends React.Component {
     }
     handleMobility = (e) => {
         e.preventDefault();
+        if (e.target.value === 'Low') {
+            this.setState({ bgColor: 'rgb(0,33,71)' });
+            this.setState({ textColor: 'white'})
+        } else if (e.target.value === 'Medium') {
+            this.setState({ bgColor2: 'rgb(0,33,71)' });
+            this.setState({ textColor2: 'white' })
+         } else {
+             this.setState({ bgColor2: 'rgb(0,33,71)' });
+             this.setState({ textColor2: 'white' })
+         }
         this.setState({ mobility: e.target.value })
         localStorage.setItem('buddyMobility', e.target.value);
     }
@@ -78,24 +94,23 @@ class AddBuddy extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = 'addBuddyText'>
                 <h1>Fitness is always more fun with friends!</h1>
                 <p>Invite a friend of a loved one to complete the program with you.  We'll show them
                    your available times and find a time that works for both of you.
                 </p>
 
                 <hr></hr>
-
-                <input type='text' placeholder={"Buddy's Name"} onChange={this.handleNameChange}></input>
-                <input type='email' placeholder={"Buddy's Email"} onChange={this.handleEmailChange}></input>
-                <input type='tel' placeholder={"Buddy's Phone Number"} onChange={this.handlePhoneChange}></input>
+                    <input className='inputBoxes' type='text' placeholder={"Buddy's Name"} onChange={this.handleNameChange}></input>
+                    <input className='inputBoxes' type='email' placeholder={"Buddy's Email"} onChange={this.handleEmailChange}></input>
+                    <input className='inputBoxes' type='tel' placeholder={"Buddy's Phone Number"} onChange={this.handlePhoneChange}></input>
 
                 <h1>Mobility Level (choose one)</h1>
-                <button value='Low' onClick={this.handleMobility}>Low</button>
-                <button value='Medium' onClick={this.handleMobility}>Medium</button>
-                <button value='High' onClick={this.handleMobility}>High</button>
-
-                <button onClick={this.handleNext}>
+                <button className='mobilityBtns' value='Low' onClick={this.handleMobility} style={{backgroundColor: this.state.bgColor, color: this.state.textColor}}>Low</button>
+                <button className='mobilityBtns' value='Medium' onClick={this.handleMobility} style={{backgroundColor: this.state.bgColor2, color: this.state.textColor2}}>Medium</button>
+                <button className='mobilityBtns' value='High' onClick={this.handleMobility} style={{backgroundColor: this.state.bgColor3, color: this.state.textColor3}}>High</button>
+                <br></br>
+                <button className='nextBtn' onClick={this.handleNext}>
                     Next
                 </button>
             </div>

@@ -60,10 +60,10 @@ class TellMore extends React.Component {
         } else if (e.target.value === 'Medium') {
             this.setState({ bgColor2: 'rgb(0,33,71)' });
             this.setState({ textColor2: 'white' })
-         } //else {(e.target.value === 'High') {
-        //     this.setState({ bgColor2: 'rgb(0,33,71)' });
-        //     this.setState({ textColor2: 'white' })
-        // }
+         } else {
+             this.setState({ bgColor2: 'rgb(0,33,71)' });
+             this.setState({ textColor2: 'white' })
+         }
 
         this.setState({ mobility: e.target.value })
         localStorage.setItem('mobility', e.target.value);

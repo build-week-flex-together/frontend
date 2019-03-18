@@ -9,11 +9,32 @@ class BuddyTimePicker extends React.Component {
             availabilityTimes: [
                 {
                     day: '',
-                    time: ''
+                    time: '',
+                    bgColor: 'white',
+                    textColor: 'black'
                 }
             ]
         }
     }
+
+
+    handleClick = (e) => {
+        e.preventDefault();
+        if (this.state.bgColor === 'white') {
+            this.setState({
+                bgColor: 'rgb(0,33,71)',
+                textColor: 'white'
+            });
+        } else {
+            this.setState({
+                bgColor: 'white',
+                textColor: 'black'
+            });
+        }
+        
+        // this.props.clickHandler(this.props.time, this.props.day);
+    };
+
     render() {
         let selTimes = JSON.parse(localStorage.getItem('selectedTimes'));
         let availabilityDisplay = null;
@@ -26,16 +47,24 @@ class BuddyTimePicker extends React.Component {
         } else {
             let selectedTimes = selTimes.filter(times => times.times.length > 0);
             availabilityDisplay = selectedTimes.map(selected => {
-                const timeBlocks = selected.times.map(time => <button>{time}</button>);
-                return (<div key={selected.day}>
+                const timeBlocks = selected.times.map(time => 
+                <button 
+                    className='timeBlock' 
+                    onClick={this.handleClick}
+                    style={{backgroundColor: this.state.bgColor, color: this.state.textColor}}>{time}
+                </button>
+            );
+                
+                return (<div className='buddyTimeChoices' key={selected.day}>
                     <label>{selected.day}</label>
+                    <br></br>
                     {timeBlocks}
                 </div>);
             });
         }
 
         return (
-            <div>
+            <div className='bigText'>
                 <h3>Here are some good times for [User 1], do any of
                     these work for you?
                 </h3>
@@ -48,9 +77,10 @@ class BuddyTimePicker extends React.Component {
                 </div>
                 
                 {/* Button needs to be 'Next' until user chooses times, then it will change to 'Submit' */}
-                <button>
+                <button className='nextBtn'>
                     <Link to='/thanks'>Next</Link>
                 </button>
+                <br></br>
                     <Link to='/noMatchTime'>None of these times work for me</Link>
             </div>
         );
