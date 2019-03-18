@@ -15,12 +15,6 @@ class TimePicker extends React.Component {
         ] 
     }
 }
-    // // e handler for day/time choice from time picker (calendar)
-    // handleDayTimeChoice = (e) => {
-    //     this.setState({
-    //         days: e.target.value
-    //      })
-    // }
 
     // e handler for dropdown menu of time zones
     handleTimeZone = (e) => {
