@@ -39,19 +39,19 @@ class WhoAreYou extends React.Component {
             <div className='whoAreYouText'>
                 <h1>Who are you?</h1>
                 <h2>Choose 1: </h2>
-            <div>
-                    {/* user chooses to be a main user (senior) or buddy (companion) */}
-                    {/* changed buttons to directly link to next step, rather than needing a third "next" button */}
-                    {/* passes data */}
-                        <button className='btns' value={1} onClick={ this.handleUserClass} style={{backgroundColor: this.state.bgColor, color: this.state.textColor}}>
-                                I am interested in low impact exercise
-                        </button>
-                        <button className='btns' value={2} onClick= { this.handleUserClass } style={{backgroundColor: this.state.bgColor2, color: this.state.textColor2 }} >
-                                I want to be a companion to my loved one/friend who needs to do low impact exercise.
-                        </button>
+            <div class='btnsContainer'>
+                {/* user chooses to be a main user (senior) or buddy (companion) */}
+                {/* changed buttons to directly link to next step, rather than needing a third "next" button */}
+                {/* passes data */}
+                    <button className='btns' value={1} onClick={ this.handleUserClass} style={{backgroundColor: this.state.bgColor, color: this.state.textColor}}>
+                            I am interested in low impact exercise
+                    </button>
+                    <button className='btnFix' value={2} onClick= { this.handleUserClass } style={{backgroundColor: this.state.bgColor2, color: this.state.textColor2 }} >
+                            I want to be a companion to my loved one/friend who needs to do low impact exercise.
+                    </button>
+            </div>
                         <br></br>
                         <button onClick = {this.handleNext } className='nextBtn'>Next</button>
-                </div>
                 {/* exercise user or companion will both go to 'TellMeMore' - choice won't matter but status should be entered into database */}
             </div>
         );
