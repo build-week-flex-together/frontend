@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class AddBuddy extends React.Component {
     constructor() {
@@ -41,6 +42,24 @@ class AddBuddy extends React.Component {
 
     handleNext = (e) => {
         e.preventDefault();
+
+        let request = {
+            is_companion = localStorage.getItem(''),
+            name: '',
+            email: '',
+            phone_number: '',
+            notification_preference: '',
+            mobility_level: '',
+            timezone: '',
+            availability: [],
+            recipient_name: localStorage.getItem('buddyName'),
+            recipient_email: localStorage.getItem('buddyEmail'),
+            recipient_phone_number: localStorage.getItem('buddyPhone'),
+            recipient_mobility_level: localStorage.getItem('buddyMobility'),
+        };
+
+        let result = axios.post("https://flextogether.herokuapp.com/api/invite", request);
+
         this.props.history.push('/thanks')
     }
 
@@ -61,12 +80,12 @@ class AddBuddy extends React.Component {
                     <input type='tel' placeholder={"Buddy's Phone Number"} onChange={this.handleBuddyInput}></input>
 
                     <h1>Mobility Level (choose one)</h1>
-                    <button value='1'>Low</button>
-                    <button value='2'>Medium</button>
-                    <button value='3'>High</button>
+                    <button value='Low'>Low</button>
+                    <button value='Medium'>Medium</button>
+                    <button value='High'>High</button>
 
-                    <button>
-                        <Link to='/thanks'>Next</Link>
+                    <button onClick={this.handleNext}>
+                        Next
                     </button>
                 </form>
 
