@@ -2,7 +2,7 @@ import React from 'react';
 
 const Thanks = () => {
     return (
-        <div>
+        <div className='bigText'>
             <h1>Thanks! We've got all we need!</h1>
             <h3>We'll reach out to your buddy and find a time
             that works for them and get back to you with

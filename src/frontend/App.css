@@ -31,3 +31,179 @@
     transform: rotate(360deg);
   }
 }
+
+/* welcome page */
+.welcome {
+  font-family: 'Roboto', sans-serif;
+  color: #002147;
+  font-size: 40px;
+
+}
+
+.startBtn {
+  border: 8px solid #002147;
+  border-radius: 14px;
+  height: 75px;
+  width: 200px;
+  font-size: 30px;
+  color: #002147;
+  background-color: white;
+}
+
+:link {
+  text-decoration: none;
+  color: #002147;
+}
+
+:visited {
+  color: #002147;
+}
+
+
+/* end welcome page */
+
+
+/* who are you page */
+
+.bigText {
+  font-family: 'Roboto', sans-serif;
+  color: #002147;
+  font-size: 30px;
+
+}
+
+.whoAreYouText {
+  font-family: 'Roboto', sans-serif;
+  color: #002147;
+  font-size: 30px;
+}
+
+.btnsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.btns {
+  border: 8px solid #002147;
+  border-radius: 14px;
+  height: 150px;
+  width: 250px;
+  font-size: 20px;
+  color: #002147;
+  background-color: white;
+  margin: 0 10px 0 0;
+}
+
+.btnFix {
+  border: 8px solid #002147;
+  border-radius: 14px;
+  height: 150px;
+  width: 250px;
+  font-size: 20px;
+  color: #002147;
+  background-color: white;
+}
+
+.nextBtn {
+  border: 8px solid #002147;
+  border-radius: 14px;
+  height: 50px;
+  width: 150px;
+  font-size: 30px;
+  color: #002147;
+  background-color: white;
+  margin: 10px 0 0 0;
+}
+
+/* end who are you page */
+
+/* Tell More Page  */
+
+.tellMoreText {
+  font-family: 'Roboto', sans-serif;
+  color: #002147;
+  font-size: 30px;
+}
+
+.inputBoxes {
+  border: 2px #002147 solid;
+  border-radius: 4px;
+  width: 250px;
+  height: 50px;
+  margin: 0 10px 0 10px;
+  padding: 0 10px 0 10px;
+}
+
+.mobilityBtn {
+  border: 8px solid #002147;
+  border-radius: 14px;
+  height: 100px;
+  width: 200px;
+  font-size: 20px;
+  color: #002147;
+  background-color: white;
+  margin: 0 10px 0 0;
+}
+
+
+/* end Tell More Page */
+
+/* time blocks / time picker */
+
+.timeBlock {
+  border: 4px solid #002147;
+  border-radius: 8px;
+  height: 30px;
+  width: 120px;
+  font-size: 20px;
+  color: #002147;
+  background-color: white;
+  margin: 2px 2px 2px 2px;
+}
+
+/* end time blocks */
+
+/* add buddy */
+
+.addBuddyText {
+  font-family: 'Roboto', sans-serif;
+  color: #002147;
+  font-size: 30px;
+}
+
+.mobilityBtns {
+  border: 8px solid #002147;
+  border-radius: 14px;
+  height: 100px;
+  width: 250px;
+  font-size: 20px;
+  color: #002147;
+  background-color: white;
+  margin: 0 10px 0 0;
+}
+
+/* end add buddy */
+
+/* thanks page  */
+
+.bigText {
+  font-family: 'Roboto', sans-serif;
+  color: #002147;
+  font-size: 30px;
+
+}
+
+/* end thanks page */
+
+/* buddy time picker */
+
+.buddyTimeChoices {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeBlock {
+  margin: 4px auto;
+}
+
+/* end buddy time picker */

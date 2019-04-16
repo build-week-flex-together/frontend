@@ -1,22 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import TimeBlockDisplay from './timeDisplay/timeBlockDisplay';
+
 
 class TimePicker extends React.Component {
     constructor() {
         super();
         this.state = { 
-            timeZones: '' 
-        }
-    }
+            timeZone: 'America/Los_Angeles'
+        };
 
-    // local storage - when user updates state
-    componentDidUpdate() {
-        localStorage.setItem('timePicker', JSON.stringify(this.state));
+        this.handleTimeZone = this.handleTimeZone.bind(this);
+        this.handleNext = this.handleNext.bind(this);
     }
 
     // e handler for dropdown menu of time zones
     handleTimeZone = (e) => {
-        this.setState({ timeZones: e.target.value })
+        this.setState({ 
+            timeZone: e.target.value 
+        });
+    }
+
+    handleNext = () => {
+        localStorage.setItem('timeZone', this.state.timeZone);
+        this.props.history.push('/addBuddy');
     }
 
     render() {
@@ -28,16 +34,19 @@ class TimePicker extends React.Component {
                     30-minute time block once per week. Please choose which times work well for you.</p>
                     <h4>Time Zone: </h4>
                     {/* dropdown for time zones */}
-                    <select>  
-                        <option value='Pacific'>Pacific Time (Los Angeles)</option>
-                        <option value='Mountain'>Mountain Time (Denver)</option>
-                        <option value='Central'>Central Time (Chicago)</option>
-                        <option value='Eastern'>Eastern Time (New York)</option>
+                    <select onChange={this.handleTimeZone} value={this.state.timeZone}>  
+                        <option value='America/Los_Angeles'>Pacific Time (Los Angeles)</option>
+                        <option value='America/Denver'>Mountain Time (Denver)</option>
+                        <option value='America/Chicago'>Central Time (Chicago)</option>
+                        <option value='America/New_York'>Eastern Time (New York)</option>
                     </select>
+                    
                     {/* Time Range Picker to go here */}
-                    <button>
-                        <Link to='/addBuddy'>Next</Link>
-                    </button>
+                    <div>
+                        <TimeBlockDisplay />
+                    </div>
+
+                    <button className='nextBtn' onClick={this.handleNext}>Next</button>
                 </form>
             </div>
         );

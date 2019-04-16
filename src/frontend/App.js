@@ -13,10 +13,12 @@ import AddBuddy from './components/addBuddy';
 import BuddyTimePicker from './components/buddyTimePicker';
 import TimeAssignment from './components/timeAssignment';
 import NoMatchTime from './components/noMatchTime';
+import Thanks from './components/thanks';
+import buddyInvite from './components/buddyInvite';
 
 class App extends Component {
   constructor() {
-    super();
+    super(); 
     this.state = {}
   }
   render() {
@@ -30,6 +32,8 @@ class App extends Component {
         <Route path='/buddyTimePicker' component={ BuddyTimePicker } />
         <Route path='/timeAssignment' component={ TimeAssignment } />
         <Route path='/noMatchTime' component={ NoMatchTime } />
+        <Route path='/buddyInvite' component={buddyInvite} />
+        <Route path='/thanks' component={ Thanks } />
       </div>
     );
   }
